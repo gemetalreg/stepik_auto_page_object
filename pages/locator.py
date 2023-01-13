@@ -9,4 +9,4 @@ class LoginPageLocarors():
     REGISTER_FORM_LINK = (By.CSS_SELECTOR, "#register_form")
 
 class ProductPageLocators():
-    ADD_TO_BASKET_LINK = (By.CSS_SELECTOR, "button.btn-add-to-basket[type='submit']")
+    ADD_TO_BASKET_LINK = (By.CSS_SELECTOR, "button.btn-add-to-basket")
