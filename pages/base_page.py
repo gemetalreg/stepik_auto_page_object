@@ -2,15 +2,32 @@ from selenium.common.exceptions import NoAlertPresentException # в начале
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from .locator import BasePageLocators
 import math
 class BasePage():
-    def __init__(self, browser, url, timeout=10) -> None:
+    def __init__(self, browser, url, timeout=0) -> None:
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
 
     def open(self):
         self.browser.get(self.url)
+
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK_INVALID)
+        link.click()
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+
+    def is_element_present(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+        
+        return True
+
 
     def is_not_element_present(self, how, what, timeout=4):
         try:
