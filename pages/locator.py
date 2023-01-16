@@ -21,4 +21,5 @@ class ProductPageLocators():
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert-success:nth-child(1)")
 
 class BasketPageLocator():
-    pass
+    BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner h2")
+    MESSAGE_BASKET_IS_EMPTY = (By.CSS_SELECTOR, "#content_inner > p")
